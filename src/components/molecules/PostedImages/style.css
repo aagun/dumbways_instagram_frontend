@@ -1,0 +1,34 @@
+.masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 1%; /* gutter size offset */
+  margin-right: 2%;
+  width: auto;
+  padding-top: 50px;
+}
+.masonry-grid_column {
+  padding-left: 20px; /* gutter size */
+  background-clip: padding-box;
+}
+/* Style your items */
+.masonry-grid_column > div {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.masonry-grid_column > div > img {
+  width: 100%;
+  position: relative;
+  transition: all 0.3s ease;
+  filter: brightness(80%);
+  margin-left: 0;
+  border-radius: 5px;
+}
+
+.masonry-grid_column > div > img:hover {
+  filter: brightness(100%);
+  z-index: 50;
+  box-shadow: 0px 0px 5px 2px rgb(48, 47, 47);
+  border-radius: 5px;
+}
