@@ -25,7 +25,7 @@ export default function AuthModal(props) {
 
   return (
     <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header className="border-0" closeButton>
+      <Modal.Header className="border-0">
         <Modal.Title>{isLoginModal ? "Login" : "Register"}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="text-white">

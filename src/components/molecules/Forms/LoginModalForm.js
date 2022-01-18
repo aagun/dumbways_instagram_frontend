@@ -27,7 +27,7 @@ export default function LoginModalForm(props) {
   };
 
   return (
-    <Form onSubmit={handleOnSubmit}>
+    <Form onSubmit={handleOnSubmit} method="POST">
       <Form.Group className="mb-3" controlId="email">
         <Form.Control
           type="email"

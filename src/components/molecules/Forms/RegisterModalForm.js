@@ -32,7 +32,7 @@ export default function RegisterModalForm(props) {
     setIsloginModal(true);
   };
   return (
-    <Form onSubmit={handleOnSubmit}>
+    <Form onSubmit={handleOnSubmit} method="POST">
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control
           type="email"
