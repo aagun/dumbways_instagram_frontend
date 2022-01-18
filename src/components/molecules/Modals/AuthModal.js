@@ -33,7 +33,11 @@ export default function AuthModal(props) {
         {isLoginModal ? (
           <LoginModalForm setMessage={setMessage} />
         ) : (
-          <RegisterModalForm setMessage={setMessage} />
+          <RegisterModalForm
+            isLoginModal={isLoginModal}
+            setIsloginModal={setIsLoginModal}
+            setMessage={setMessage}
+          />
         )}
       </Modal.Body>
       <Modal.Footer className="border-0">

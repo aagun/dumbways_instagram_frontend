@@ -155,7 +155,6 @@ export default function Home() {
               selectedImage={selectedImage}
               setSelectedImage={setSelectedImage}
             />
-            // {console.log(selectedImage - 1)}
           )}
         </Col>
       </Row>

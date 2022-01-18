@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 export default function RegisterModalForm(props) {
-  const { setMessage } = props;
-  const [user, setUser] = useState({});
+  const { setMessage, setIsloginModal } = props;
   const [state, setState] = useState({
     email: "",
     name: "",
@@ -20,11 +19,17 @@ export default function RegisterModalForm(props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    setUser({ ...state });
-    if (!user.email || !user.name || !user.name || !user.password) {
+    if (!state.email || !state.name || !state.username || !state.password) {
       return setMessage("Harap isi semua ya kak field nya.");
     }
     setMessage("");
+    setState({
+      email: "",
+      name: "",
+      username: "",
+      password: "",
+    });
+    setIsloginModal(true);
   };
   return (
     <Form onSubmit={handleOnSubmit}>
@@ -34,6 +39,7 @@ export default function RegisterModalForm(props) {
           placeholder="Email"
           name="email"
           onChange={handleOnChange}
+          value={state.email}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicName">
@@ -42,6 +48,7 @@ export default function RegisterModalForm(props) {
           placeholder="Name"
           name="name"
           onChange={handleOnChange}
+          value={state.name}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicUserName">
@@ -50,6 +57,7 @@ export default function RegisterModalForm(props) {
           placeholder="Username"
           name="username"
           onChange={handleOnChange}
+          value={state.username}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -58,6 +66,7 @@ export default function RegisterModalForm(props) {
           placeholder="Password"
           name="password"
           onChange={handleOnChange}
+          value={state.password}
         />
       </Form.Group>
       <Button className="w-100 mt-4 p-2" type="submit">

@@ -16,7 +16,7 @@ export default function ProfilePicture(props) {
   if (isMedium) className.push("profile-image-md");
   if (isLarge) className.push("profile-image");
   return (
-    <div className="profile-background" style={{ style }}>
+    <div className="profile-background" style={style}>
       <img className={className.join(" ")} src={image} alt={name || ""} />
     </div>
   );

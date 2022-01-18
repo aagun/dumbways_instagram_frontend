@@ -1,5 +1,5 @@
 import "./style.css";
-import React from "react";
+import React, { useState } from "react";
 import {
   Navbar,
   Image,
@@ -11,6 +11,8 @@ import {
   Dropdown,
   Row,
   Col,
+  OverlayTrigger,
+  Popover,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Icons, ImagesForLandingPage } from "../../../assets";
@@ -46,7 +48,23 @@ export default function NavbarComponent() {
             navbarScroll
           >
             <>
-              <Dropdown className="d-inline" drop="down">
+              <OverlayTrigger
+                trigger="click"
+                placement="bottom"
+                rootClose={true}
+                overlay={
+                  <Popover id="popover-basic" arrowProps={{ left: "90" }}>
+                    <Popover.Header as="h3">Popover right</Popover.Header>
+                    <Popover.Body>
+                      And here's some <strong>amazing</strong> content. It's
+                      very engaging. right?
+                    </Popover.Body>
+                  </Popover>
+                }
+              >
+                <Button variant="success">Click me to see</Button>
+              </OverlayTrigger>
+              <Dropdown className="d-inline border-0" drop="down">
                 <Dropdown.Toggle
                   href="#"
                   id="navbarDropdown"
@@ -87,6 +105,43 @@ export default function NavbarComponent() {
                           isSmall
                           dataImage={{ image: ImagesForLandingPage[3] }}
                           style={{ width: "30px", height: "30px" }}
+                        />
+                      </Col>
+                      <Col md={11} className="ps-4">
+                        <p className="mb-0">abdul_h</p>
+                        <small>
+                          <strong>Komentar: </strong>Nice place
+                        </small>
+                      </Col>
+                    </Row>
+                  </li>
+                  <li class="notification-box">
+                    <Row className="px-5 my-3">
+                      <Col md={1}>
+                        <ProfilePicture
+                          isSmall
+                          dataImage={{ image: ImagesForLandingPage[3] }}
+                          style={{ width: "30px", height: "30px" }}
+                        />
+                      </Col>
+                      <Col md={11} className="ps-4">
+                        <p className="mb-0">abdul_h</p>
+                        <small>
+                          <strong>Komentar: </strong>Nice place
+                        </small>
+                      </Col>
+                    </Row>
+                  </li>
+                  <li class="notification-box">
+                    <Row className="px-5 my-3">
+                      <Col md={1}>
+                        <ProfilePicture
+                          isSmall
+                          dataImage={{ image: ImagesForLandingPage[3] }}
+                          style={{
+                            width: "30px",
+                            height: "30px",
+                          }}
                         />
                       </Col>
                       <Col md={11} className="ps-4">
