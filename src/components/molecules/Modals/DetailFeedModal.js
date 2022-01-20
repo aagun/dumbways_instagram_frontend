@@ -78,14 +78,11 @@ export default function DetailFeedModal(props) {
 
   const closeModal = (e) => {
     setSelectedImage(null);
-    document.querySelector("body").classList.remove("body");
-    if (e.target.classList.contains("modal-container")) {
-    }
+    document.querySelector("body").classList.remove("global-modal-containeron");
   };
 
   return (
-    <div className="global-modal-container">
-      {document.querySelector("body").classList.add("body")}
+    <div className="global-modal-container" onClick={closeModal}>
       <div className="all-modalItems-container">
         <div className="modal-container-detail">
           <img className="modal-element" src={image} alt="" />
@@ -94,7 +91,7 @@ export default function DetailFeedModal(props) {
           <button
             onClick={closeModal}
             className="btn-secondary"
-            style={{ position: "absolute", right: "11.5%", top: "2.5%" }}
+            style={{ position: "absolute", right: "14.6%", top: "2.5%" }}
           >
             X
           </button>
@@ -140,7 +137,7 @@ export default function DetailFeedModal(props) {
             })}
           </div>
 
-          <div style={{ position: "absolute", bottom: 50, width: "357px" }}>
+          <div style={{ position: "absolute", bottom: 35, width: "21%" }}>
             <InputGroup className="d-flex w-100">
               <FormControl
                 type="text"

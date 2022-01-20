@@ -1,0 +1,36 @@
+{
+  "profile": [
+    {
+      "id": 1,
+      "bio": "Hi world",
+      "user": {
+        "id": 1,
+        "email": "lisa@mail.com",
+        "name": "Lisa",
+        "username": "@lisa",
+        "password": "123"
+      }
+    },
+    {
+      "id": 2,
+      "email": "zayn@mail.com",
+      "name": "Zayn",
+      "username": "@zayn",
+      "password": "123"
+    },
+    {
+      "id": 3,
+      "email": "agun@mail.com",
+      "name": "Agun",
+      "username": "@agun",
+      "password": "123"
+    },
+    {
+      "id": 4,
+      "email": "Adbi@mail.com",
+      "name": "Adbi",
+      "username": "@adbi",
+      "password": "123"
+    }
+  ]
+}

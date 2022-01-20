@@ -5,7 +5,9 @@
   margin-left: 1%; /* gutter size offset */
   margin-right: 2%;
   width: auto;
-  padding-top: 50px;
+  margin-top: 50px;
+  height: 108vh;
+  overflow: hidden scroll;
 }
 .masonry-grid_column {
   padding-left: 20px; /* gutter size */
