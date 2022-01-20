@@ -11,6 +11,7 @@ import {
 import NavbarComponent from "../../components/molecules/Navbar";
 
 export default function Home() {
+  document.querySelector("title").innerHTML = "Home";
   const posts = [
     {
       user: {

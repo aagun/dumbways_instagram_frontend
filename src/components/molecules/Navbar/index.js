@@ -29,12 +29,7 @@ export default function NavbarComponent() {
   };
 
   return (
-    <Navbar
-      sticky="top"
-      variant="dark"
-      expand="lg"
-      style={{ backgroundColor: "#0b0b0b " }}
-    >
+    <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#0b0b0b " }}>
       <Container>
         <InputGroup className="d-flex w-40">
           <InputGroup.Text id="basic-addon1">
