@@ -94,15 +94,17 @@ export default function Home() {
   });
   const [state, setState] = useState(false);
   const [show, setShow] = useState(false);
+  const [selectedImage, setSelectedImage] = useState();
   const [message, setMessage] = useState("");
   const [userFeed, setUserFeed] = useState([]);
   const [isUser, setIsUser] = useState(false);
-  const { username } = useParams();
-  const [selectedImage, setSelectedImage] = useState();
+  const [checked, setChecked] = useState(false);
 
+  const { username } = useParams();
   useEffect(() => {
     if (username) {
       const findUser = users.find((u) => u.username === username);
+      // check if user avail
       if (findUser) {
         setIsUser(true);
         const userPosts = posts.filter(
@@ -149,12 +151,16 @@ export default function Home() {
               isFeed
               dataPosted={posts}
               setSelectedImage={setSelectedImage}
+              setChecked={setChecked}
+              checked={checked}
             />
           )}
           {selectedImage && (
             <DetailFeedModal
               selectedImage={selectedImage}
               setSelectedImage={setSelectedImage}
+              checked={checked}
+              setChecked={setChecked}
             />
           )}
         </Col>

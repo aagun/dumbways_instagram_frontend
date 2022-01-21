@@ -50,7 +50,7 @@ export default function NavbarComponent() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <div class="overlay" onClick={handlerRemoveOverlay}></div>
+            <div className="overlay" onClick={handlerRemoveOverlay}></div>
             <>
               <OverlayTrigger
                 trigger="click"

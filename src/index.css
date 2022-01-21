@@ -299,3 +299,16 @@ input.form-control:focus {
 .message > div:first-child {
   border-right: 1px solid rgba(106, 106, 106, 0.3);
 }
+
+input[type="checkbox"][id^="cb"] {
+  display: block;
+}
+
+div label svg {
+  cursor: pointer !important;
+}
+
+:checked + label path {
+  fill: red !important;
+  stroke: red !important;
+}
