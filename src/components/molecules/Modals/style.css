@@ -22,7 +22,7 @@ div.detail-image .modal-dialog {
 } */
 
 /*MODAL IMAGES CONTAINER*/
-.global-modal-container {
+.detail-feed-modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -32,8 +32,7 @@ div.detail-image .modal-dialog {
   z-index: 10000;
 }
 
-/*All modalitems container*/
-.all-modalItems-container {
+.detail-feed-container {
   display: flex;
   justify-content: center;
   position: fixed;
@@ -43,7 +42,8 @@ div.detail-image .modal-dialog {
   min-height: 450px;
   z-index: 10000;
 }
-.modal-container-detail {
+
+.detail-feed-image {
   border-radius: 10px 0 0 10px;
   position: relative;
   width: 700px;
@@ -52,7 +52,8 @@ div.detail-image .modal-dialog {
   background: #0b0b0b;
   z-index: 10000;
 }
-.modal-element {
+
+.detail-feed-image > img {
   position: relative;
   top: 50%;
   left: 50%;
@@ -66,7 +67,8 @@ div.detail-image .modal-dialog {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
-.PhotosInfoModal {
+.PhotosInfoModal,
+.detail-feed-info {
   border-radius: 0 10px 10px 0;
   max-width: 30%;
   width: 25%;
@@ -75,55 +77,103 @@ div.detail-image .modal-dialog {
   color: white;
   padding: 0px 30px;
 }
-.PhotosInfoModal .description {
+
+.detail-feed-info .close {
+  position: absolute;
+  right: 14.6%;
+  top: 2.5%;
+}
+
+.detail-feed-info .description {
   display: flex;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.357);
 }
 
-.PhotosInfoModal input[type="text"] {
+.detail-feed-info input[type="text"] {
   border: unset;
   padding: 10px 10px;
   color: white !important;
   font-weight: 600;
 }
 
-.PhotosInfoModal input::placeholder {
+.detail-feed-info input::placeholders {
   color: white;
   font-weight: 600;
 }
 
-.description > img {
+.detail-feed-info .description > img {
   margin-right: 10px;
 }
 
-.comment-container {
+.detail-feed-info .comment-container {
   display: flex;
   flex-direction: column;
   color: white;
+  max-height: 430px;
+  overflow-y: scroll;
 }
-.tag-container {
+.detail-feed-info .comment {
   display: flex;
   margin-top: 20px;
 }
 
-.tag-container > img {
+.detail-feed-info .bg-rainbow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   margin-right: 10px;
 }
 
-.tag-container p {
+.detail-feed-info img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.detail-feed-info .comment p {
   margin-bottom: 0;
 }
 
-.tag-container > div p:first-child,
-.description p:first-child {
+.detail-feed-info .comment > div p:first-child,
+.detail-feed-info .description p:first-child {
   margin-bottom: 0;
   font-weight: 600;
   font-size: 0.9rem;
 }
-.tag-container > div p:not(:first-child),
-.description p:not(:first-child) {
+
+.detail-feed-info .comment > div p:not(:first-child),
+.detail-feed-info .description p:not(:first-child) {
   margin-bottom: 0;
   font-size: 1rem;
   color: #ababab !important;
 }
+
+/* .like-btn-svg {
+  width: 80px;
+  height: 100px;
+  background: url(https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png)
+    no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+} */
+
+/* input[type="checkbox"] {
+  display: none;
+} */
+/* 
+input:checked + .like-btn-svg {
+  transition: background 1s steps(28);
+  animation: fave-like-btn-svg 1s steps(28);
+  background-position: -2800px 0;
+}
+
+@keyframes fave-like-btn-svg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+} */

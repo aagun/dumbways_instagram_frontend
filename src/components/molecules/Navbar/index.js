@@ -1,5 +1,5 @@
 import "./style.css";
-import React, { useState } from "react";
+import React from "react";
 import {
   Navbar,
   Image,
@@ -8,7 +8,6 @@ import {
   FormControl,
   InputGroup,
   Button,
-  Dropdown,
   Row,
   Col,
   OverlayTrigger,

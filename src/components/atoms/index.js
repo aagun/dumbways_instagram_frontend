@@ -1,3 +1,6 @@
 import Logo from "./Logo";
 import ProfilePicture from "./ProfilePicture";
-export { Logo, ProfilePicture };
+import LikeIcon from "./LikeIcon";
+import MessageIcon from "./MessageIcon";
+import CommentIcon from "./CommentIcon";
+export { Logo, LikeIcon, ProfilePicture, CommentIcon, MessageIcon };

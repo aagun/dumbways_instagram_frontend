@@ -1,5 +1,9 @@
-import React from "react";
-import { Button, FormControl, InputGroup } from "react-bootstrap";
+import React, { useState } from "react";
+import { FormControl, InputGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Icons } from "../../../assets";
+import { CommentIcon, MessageIcon } from "../../atoms";
+import LikeIcon from "../../atoms/LikeIcon";
 import "./style.css";
 
 export default function DetailFeedModal(props) {
@@ -67,10 +71,6 @@ export default function DetailFeedModal(props) {
     },
   ];
 
-  console.log(posts[selectedImage]);
-  console.log(selectedImage);
-  console.log(posts[0]);
-  console.log(posts[selectedImage]);
   const {
     image,
     user: { username, profilePicture },
@@ -78,56 +78,48 @@ export default function DetailFeedModal(props) {
 
   const closeModal = (e) => {
     setSelectedImage(null);
-    document.querySelector("body").classList.remove("global-modal-containeron");
+    document
+      .querySelector("body")
+      .classList.remove("detail-feed-modal-container");
   };
 
+  const handlerLikePost = () => {
+    if (fill === "red") {
+      setFill("none");
+      return setStroke("gray");
+    }
+    setFill("red");
+    return setStroke("red");
+  };
+
+  const [fill, setFill] = useState("none");
+  const [stroke, setStroke] = useState("#ABABAB");
   return (
-    <div className="global-modal-container" onClick={closeModal}>
-      <div className="all-modalItems-container">
-        <div className="modal-container-detail">
-          <img className="modal-element" src={image} alt="" />
+    <div className="detail-feed-modal-container">
+      <div className="detail-feed-container">
+        <div className="detail-feed-image">
+          <img src={image} alt="" />
         </div>
-        <div className="PhotosInfoModal pt-5">
-          <button
-            onClick={closeModal}
-            className="btn-secondary"
-            style={{ position: "absolute", right: "14.6%", top: "2.5%" }}
-          >
+        <div className="detail-feed-info pt-5">
+          <button onClick={closeModal} className="close btn-secondary">
             X
           </button>
           <div className="description">
-            <img
-              src={profilePicture}
-              alt={username}
-              style={{
-                width: "30px",
-                height: "30px",
-                borderRadius: "50%",
-                border: "3px solid transparent",
-              }}
-              className="bg-rainbow"
-            />
+            <div className="bg-rainbow">
+              <img src={profilePicture} alt={username} />
+            </div>
             <div>
               <p>{username}</p>
               <p>What an awsome place!</p>
             </div>
           </div>
-
           <div className="comment-container">
             {comments.map((user, index) => {
               return (
-                <div key={index} className="tag-container">
-                  <img
-                    src={user.profilePicture}
-                    alt={user.username}
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      borderRadius: "50%",
-                      border: "3px solid transparent",
-                    }}
-                    className="bg-rainbow"
-                  />
+                <div key={index} className="comment">
+                  <div className="bg-rainbow">
+                    <img src={user.profilePicture} alt={user.username} />
+                  </div>
                   <div>
                     <p>{user.username}</p>
                     <p>{user.comment}</p>
@@ -136,8 +128,24 @@ export default function DetailFeedModal(props) {
               );
             })}
           </div>
-
           <div style={{ position: "absolute", bottom: 35, width: "21%" }}>
+            <div className="action d-flex justify-content-end align-items-center mb-2">
+              <Link to="" onClick={handlerLikePost} className="me-2">
+                <LikeIcon fill={fill} stroke={stroke} />
+              </Link>
+              <Link to="" className="me-2">
+                <CommentIcon />
+              </Link>
+              <Link to="/home/message" className="me-2">
+                <MessageIcon />
+              </Link>
+            </div>
+            <p
+              className="text-end text-muted me-2 likes"
+              style={{ fontSize: "18px" }}
+            >
+              127,123 Likes
+            </p>
             <InputGroup className="d-flex w-100">
               <FormControl
                 type="text"
