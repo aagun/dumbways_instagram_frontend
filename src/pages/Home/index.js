@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { Logo } from "../../components/atoms";
 import {
   DetailFeedModal,
@@ -12,155 +11,184 @@ import NavbarComponent from "../../components/molecules/Navbar";
 
 export default function Home() {
   document.querySelector("title").innerHTML = "Home";
-  const posts = [
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/1.png"),
-      likes: 1,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/4.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/2.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/5.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/3.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/7.png"),
-      likes: 127321,
-    },
-  ];
-  const users = [
-    {
-      name: "Lisa",
-      username: "lisa_blp",
-      profilePicture: require("../../assets/images/avatar/lisa.png"),
-      posts: 200,
-      followers: 50.1,
-      following: 1,
-      bio: "Rapper in Black Pink, Brand Ambasador Penshoppe",
-    },
-    {
-      name: "Zayn",
+  const user = {
+    profile: {
+      id: 1,
+      fullName: "Zayn",
+      email: "zayn@mail.com",
       username: "zayn",
-      profilePicture: require("../../assets/images/avatar/zayn.png"),
-      posts: 1000,
-      followers: 150.1,
-      following: 1,
-      bio: "Brand Ambasador Penshoppe",
+      bio: "Rapper in Black Pink, Brand Ambasador Penshoppe",
+      image: require("../../assets/images/avatar/zayn.png"),
+      insight: {
+        posts: 6,
+        followers: 30,
+        following: 1,
+      },
     },
-  ];
-
-  const [user, setUser] = useState({
-    name: "",
-    profilePicture: "",
-    username: "",
-    posts: "",
-    followers: "",
-    following: "",
-    bio: "",
-  });
-  const [state, setState] = useState(false);
-  const [show, setShow] = useState(false);
+    feed: [
+      {
+        id: 1,
+        fullName: "Zayn",
+        username: "zayn",
+        photo: require("../../assets/images/avatar/zayn.png"),
+        image: require("../../assets/images/1.png"),
+        like: 54000,
+        caption: "Beautiful place",
+        comment: [
+          {
+            id: 1,
+            photo: require("../../assets/images/avatar/lisa.png"),
+            username: "lisa",
+            comment: "Awesome!",
+          },
+          {
+            id: 2,
+            photo: require("../../assets/images/avatar/zayn.png"),
+            username: "zayn",
+            comment: "Thanks!",
+          },
+        ],
+      },
+      {
+        id: 2,
+        fullName: "Zayn",
+        username: "zayn",
+        photo: require("../../assets/images/avatar/zayn.png"),
+        image: require("../../assets/images/4.png"),
+        like: 31922,
+        caption: "Nostalgic",
+        comment: [
+          {
+            id: 1,
+            photo: require("../../assets/images/avatar/lisa.png"),
+            username: "lisa",
+            comment: "Awesome!",
+          },
+          {
+            id: 2,
+            photo: require("../../assets/images/avatar/zayn.png"),
+            username: "zayn",
+            comment: "Thanks!",
+          },
+        ],
+      },
+      {
+        id: 3,
+        fullName: "Zayn",
+        username: "zayn",
+        photo: require("../../assets/images/avatar/zayn.png"),
+        image: require("../../assets/images/2.png"),
+        like: 2350091,
+        caption: "Join",
+        comment: [
+          {
+            id: 1,
+            photo: require("../../assets/images/avatar/lisa.png"),
+            username: "lisa",
+            comment: "Awesome!",
+          },
+          {
+            id: 2,
+            photo: require("../../assets/images/avatar/zayn.png"),
+            username: "zayn",
+            comment: "Thanks!",
+          },
+        ],
+      },
+      {
+        id: 4,
+        fullName: "Zayn",
+        username: "zayn",
+        photo: require("../../assets/images/avatar/zayn.png"),
+        image: require("../../assets/images/5.png"),
+        like: 9091,
+        caption: "Yeah!",
+        comment: [
+          {
+            id: 1,
+            photo: require("../../assets/images/avatar/lisa.png"),
+            username: "lisa",
+            comment: "Awesome!",
+          },
+          {
+            id: 2,
+            photo: require("../../assets/images/avatar/zayn.png"),
+            username: "zayn",
+            comment: "Thanks!",
+          },
+        ],
+      },
+      {
+        id: 5,
+        fullName: "Zayn",
+        username: "zayn",
+        photo: require("../../assets/images/avatar/zayn.png"),
+        image: require("../../assets/images/3.png"),
+        like: 19091,
+        caption: "See in my eye",
+        comment: [
+          {
+            id: 1,
+            photo: require("../../assets/images/avatar/lisa.png"),
+            username: "lisa",
+            comment: "Awesome!",
+          },
+          {
+            id: 2,
+            photo: require("../../assets/images/avatar/zayn.png"),
+            username: "zayn",
+            comment: "Thanks!",
+          },
+        ],
+      },
+      {
+        id: 6,
+        fullName: "Zayn",
+        username: "zayn",
+        photo: require("../../assets/images/avatar/zayn.png"),
+        image: require("../../assets/images/7.png"),
+        like: 9091,
+        caption: "Peacefull",
+        comment: [
+          {
+            id: 1,
+            photo: require("../../assets/images/avatar/lisa.png"),
+            username: "lisa",
+            comment: "Awesome!",
+          },
+          {
+            id: 2,
+            photo: require("../../assets/images/avatar/zayn.png"),
+            username: "zayn",
+            comment: "Thanks!",
+          },
+        ],
+      },
+    ],
+  };
   const [selectedImage, setSelectedImage] = useState();
-  const [message, setMessage] = useState("");
-  const [userFeed, setUserFeed] = useState([]);
-  const [isUser, setIsUser] = useState(false);
-  const [checked, setChecked] = useState(false);
-
-  const { username } = useParams();
-  useEffect(() => {
-    if (username) {
-      const findUser = users.find((u) => u.username === username);
-      // check if user avail
-      if (findUser) {
-        setIsUser(true);
-        const userPosts = posts.filter(
-          (post) => post.user.username === username
-        );
-        setState(true);
-        setUserFeed([...userPosts]);
-        return setUser({ ...user, ...findUser });
-      }
-      setMessage(`User ${username} not found`);
-      setShow(true);
-      return setUser({ ...user, ...users[0] });
-    }
-    setShow(false);
-    setUser({ ...user, ...users[0] });
-    setState(false);
-  }, [username]);
 
   return (
     <Container fluid>
       <Row className="feed min-vh-100">
         <Col md={3} className="px-0 pb-5">
           <Logo isSmall className="mt-4 mx-5" />
-          <UserProfile
-            user={{ user, params: state }}
-            show={show}
-            setShow={setShow}
-            message={message}
-            setMessage={setMessage}
-          />
+          <UserProfile profile={user.profile} />
           <SideNavbar />
         </Col>
         <Col md={9} className="container-fluid pt-4">
           <NavbarComponent />
-          {isUser ? (
-            <PostedImages
-              isFeed
-              dataPosted={userFeed}
-              id={username}
-              setSelectedImage={setSelectedImage}
-            />
-          ) : (
-            <PostedImages
-              isFeed
-              dataPosted={posts}
-              setSelectedImage={setSelectedImage}
-              setChecked={setChecked}
-              checked={checked}
-            />
-          )}
+          <h1 className="text-white fw-bold mt-3 ps-4">Feed</h1>
+          <PostedImages
+            isFeed
+            feeds={user.feed}
+            setSelectedImage={setSelectedImage}
+          />
           {selectedImage && (
             <DetailFeedModal
               selectedImage={selectedImage}
               setSelectedImage={setSelectedImage}
-              checked={checked}
-              setChecked={setChecked}
+              images={user.feed}
             />
           )}
         </Col>

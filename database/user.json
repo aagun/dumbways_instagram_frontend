@@ -2,29 +2,29 @@
   {
     "id": 1,
     "email": "lisa@mail.com",
-    "name": "Lisa",
+    "fullName": "Lisa",
     "username": "@lisa",
     "password": "123"
   },
   {
     "id": 2,
     "email": "zayn@mail.com",
-    "name": "Zayn",
+    "fullName": "Zayn",
     "username": "@zayn",
     "password": "123"
   },
   {
     "id": 3,
     "email": "agun@mail.com",
-    "name": "Agun",
+    "fullName": "Agun",
     "username": "@agun",
     "password": "123"
   },
   {
     "id": 4,
-    "email": "Adbi@mail.com",
-    "name": "Adbi",
-    "username": "@adbi",
+    "email": "fahmi@mail.com",
+    "fullName": "Fahmi",
+    "username": "@fahmi",
     "password": "123"
   }
 ]

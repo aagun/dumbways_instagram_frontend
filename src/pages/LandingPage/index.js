@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Logo } from "../../components/atoms";
-import { ImagesForLandingPage } from "../../assets";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { PostedImages as Hero, AuthModal } from "../../components/molecules";
 
 export default function LandingPage(props) {
+  // set page titel
   document.title = "DumbGram";
+
   const [show, setShow] = useState(props.show || false);
   const [isLoginModal, setIsLoginModal] = useState(props.show || false);
 
+  // modal handler for login or register
   const handleShow = (e) => {
     const isLogin = e.target.id;
     setShow(true);
@@ -52,7 +54,7 @@ export default function LandingPage(props) {
           />
         </Col>
         <Col md={7}>
-          <Hero isHero dataPosted={ImagesForLandingPage} />
+          <Hero isHero />
         </Col>
       </Row>
     </Container>

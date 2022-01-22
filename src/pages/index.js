@@ -4,5 +4,6 @@ import Explore from "./Explore";
 import Message from "./Message";
 import CreatePost from "./CreatePost";
 import EditProfile from "./EditProfile";
+import User from "./User";
 
-export { LandingPage, Home, Explore, Message, CreatePost, EditProfile };
+export { LandingPage, Home, Explore, Message, CreatePost, EditProfile, User };

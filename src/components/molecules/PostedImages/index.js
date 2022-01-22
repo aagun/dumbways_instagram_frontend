@@ -3,25 +3,12 @@ import "./style.css";
 import Masonry from "react-masonry-css";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { ImagesForLandingPage as Hero } from "../../../assets";
 import { CommentIcon, LikeIcon, MessageIcon } from "../../atoms";
 
 export default function PostedImages(props) {
-  let {
-    dataPosted,
-    isFeed,
-    isExplore,
-    isHero,
-    id,
-    setSelectedImage,
-    checked,
-    setChecked,
-  } = props;
-  const MasonryOptions = {
-    default: 3,
-    1200: 3,
-    1000: 2,
-    700: 1,
-  };
+  let { feeds, isFeed, isHero, setSelectedImage, checked, setChecked } = props;
+
   const handleDetailFeedModal = (id_) => {
     setSelectedImage(id_ + 1);
     if (document.getElementById(`cb${id_}`)) {
@@ -31,28 +18,31 @@ export default function PostedImages(props) {
       setChecked(true);
     }
   };
-
   return (
     <>
-      {!isHero && (
-        <h1 className="text-white fw-bold mt-3 ps-4">
-          {id && `${id}, `}
-          {isFeed ? "Feed" : "Explore"}
-        </h1>
-      )}
       <Masonry
-        breakpointCols={MasonryOptions}
+        breakpointCols={{ default: 3, 1200: 3, 1000: 2, 700: 1 }}
         className={isHero ? "my-masonry-grid" : "masonry-grid"}
         columnClassName={
           isHero ? "my-masonry-grid_column" : "masonry-grid_column"
         }
       >
-        {isFeed || isExplore
-          ? dataPosted.map((post, index) => {
+        {isHero
+          ? Hero.map((feed, index) => {
               return (
                 <div key={index}>
                   <img
-                    src={post.image}
+                    src={feed}
+                    alt={feed.split("/").pop().replace(".", "")}
+                  />
+                </div>
+              );
+            })
+          : feeds.map((feed, index) => {
+              return (
+                <div key={index}>
+                  <img
+                    src={feed.image}
                     alt={index}
                     onClick={() => handleDetailFeedModal(index)}
                   />
@@ -65,8 +55,8 @@ export default function PostedImages(props) {
                             onClick={() => handleDetailFeedModal(index)}
                           >
                             <img
-                              src={post.user.profilePicture}
-                              alt={post.user.name + "profile_picture"}
+                              src={feed.photo}
+                              alt={feed.fullName + "profile_picture"}
                               className="profile-image-sm"
                             />
                           </div>
@@ -74,7 +64,7 @@ export default function PostedImages(props) {
                             className="profile-name-sm"
                             onClick={() => handleDetailFeedModal(index)}
                           >
-                            {post.user.username}
+                            {feed.username}
                           </span>
                         </div>
                       </Col>
@@ -83,8 +73,8 @@ export default function PostedImages(props) {
                         className="d-flex justify-content-end align-items-center"
                       >
                         <div className="me-2">
-                          <input type="checkbox" id={"cb" + index} />
-                          <label htmlFor={"cb" + index}>
+                          <input type="checkbox" id={`cb${feed.id}`} />
+                          <label htmlFor={`cb${feed.id}`}>
                             <LikeIcon fill={"none"} stroke={"#ABABAB"} />
                           </label>
                         </div>
@@ -99,21 +89,13 @@ export default function PostedImages(props) {
                         className="text-end text-muted my-3"
                         style={{ fontSize: "18px" }}
                       >
-                        {post.likes.toLocaleString()} Likes
+                        {feed.like.toLocaleString()} Likes
                       </span>
                     </Row>
                   )}
                 </div>
               );
-            })
-          : dataPosted.map((src, index) => {
-              return (
-                <div key={index}>
-                  <img src={src} alt={src.split("/").pop().replace(".", "")} />
-                </div>
-              );
             })}
-        {}
       </Masonry>
     </>
   );

@@ -301,7 +301,7 @@ input.form-control:focus {
 }
 
 input[type="checkbox"][id^="cb"] {
-  display: block;
+  display: none;
 }
 
 div label svg {

@@ -5,17 +5,9 @@ import { Link } from "react-router-dom";
 import { ProfilePicture } from "../../atoms";
 import { UserInsight } from "..";
 import { Icons } from "../../../assets";
-import MessageModal from "../Modals/MessageModal";
 
 export default function UserProfile(props) {
-  let {
-    user: { user, params },
-    show,
-    setShow,
-    message,
-    setMessage,
-  } = props;
-
+  let { profile, params } = props;
   return (
     <>
       <Row className="profile mt-3">
@@ -27,10 +19,10 @@ export default function UserProfile(props) {
           )}
           <ProfilePicture
             isLarge
-            dataImage={{ name: user.name, image: user.profilePicture }}
+            dataImage={{ src: profile.image, alt: profile.username }}
           />
-          <span className="profile-name mb-1">{user.name}</span>
-          <span className="profile-username mb-5">@{user.username}</span>
+          <span className="profile-name mb-1">{profile.fullName}</span>
+          <span className="profile-username mb-5">@{profile.username}</span>
           {params && (
             <Col className="mb-5">
               <Link to="/home/message" className="btn btn-primary ms-3 fs-6">
@@ -41,18 +33,12 @@ export default function UserProfile(props) {
               </Link>
             </Col>
           )}
-          <UserInsight user={user} />
+          <UserInsight insight={profile.insight} />
           <div className="w-100 px-5">
-            <p className="bio">{user.bio}</p>
+            <p className="bio">{profile.bio}</p>
           </div>
         </div>
       </Row>
-      <MessageModal
-        show={show}
-        setShow={setShow}
-        message={message}
-        setMessage={setMessage}
-      />
     </>
   );
 }

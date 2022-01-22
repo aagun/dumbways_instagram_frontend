@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { DetailFeedModal, PrivateRoute } from "./components/molecules";
-import { LandingPage, Home, Explore, Message, CreatePost } from "./pages";
+import { LandingPage, Home, Explore, Message, CreatePost, User } from "./pages";
 import EditProfile from "./pages/EditProfile";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="home/feed" element={<Home />} />
           <Route path="home/explore" element={<Explore />} />
-          <Route path="home/feed/:username" element={<Home />} />
+          <Route path="home/feed/:username" element={<User />} />
           <Route path="home/message" element={<Message />} />
           <Route path="home/create-post" element={<CreatePost />} />
           <Route path="home/edit-profile" element={<EditProfile />} />

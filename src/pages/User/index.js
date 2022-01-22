@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Navigate, useParams } from "react-router-dom";
 import { Logo } from "../../components/atoms";
 import {
   DetailFeedModal,
@@ -9,7 +10,13 @@ import {
 } from "../../components/molecules";
 import NavbarComponent from "../../components/molecules/Navbar";
 
-export default function Explore() {
+export default function User() {
+  // get username value by params
+  const { username } = useParams();
+
+  // set title page by username
+  document.querySelector("title").innerHTML = `${username} | Home`;
+
   // dummy data
   const user = {
     profile: {
@@ -168,19 +175,29 @@ export default function Explore() {
   };
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [params, setParams] = useState(false);
+  useState(() => {
+    if (!user) {
+      return <Navigate to={"/home/feed"} />;
+    }
+    setParams(true);
+  }, []);
+
   return (
     <Container fluid>
       <Row className="feed min-vh-100">
         <Col md={3} className="px-0 pb-5">
           <Logo isSmall className="mt-4 mx-5" />
-          <UserProfile profile={user.profile} />
+          <UserProfile profile={user.profile} params={params} />
           <SideNavbar />
         </Col>
         <Col md={9} className="container-fluid pt-4">
           <NavbarComponent />
-          <h1 className="text-white fw-bold mt-3 ps-4">Explore</h1>
+          <h1 className="text-white fw-bold mt-3 ps-4">
+            {user.profile.fullName}, Feed
+          </h1>
           <PostedImages
-            isExplore
+            isFeed
             feeds={user.feed}
             setSelectedImage={setSelectedImage}
           />
