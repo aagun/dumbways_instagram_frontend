@@ -1,15 +1,18 @@
 import "./style.css";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FormControl, InputGroup } from "react-bootstrap";
 import { LikeIcon, CommentIcon, MessageIcon } from "../../atoms";
+import { user } from "../../../fakeData";
 
 export default function DetailFeedModal(props) {
-  const { selectedImage, setSelectedImage, images } = props;
+  const { selectedImage, setSelectedImage } = props;
+  let [feed, setFeed] = useState({});
 
   // selected image as same as post when post clicked
-  const { image, photo, username, caption, comment } =
-    images[selectedImage - 1];
+  useEffect(() => {
+    setFeed({ ...selectedImage });
+  }, []);
 
   const closeModal = () => {
     setSelectedImage(null);
@@ -18,35 +21,64 @@ export default function DetailFeedModal(props) {
       .classList.remove("detail-feed-modal-container");
   };
 
+  const handleLikeDetailFeed = () => {
+    if (feed.like) {
+      feed.like = false;
+      return console.log(feed.like);
+    }
+    feed.like = true;
+  };
+
+  const navigate = useNavigate();
   return (
     <div className="detail-feed-modal-container">
       <div className="detail-feed-container">
         <div className="detail-feed-image">
-          <img src={image} alt="" />
+          <img src={feed.image} alt="" />
         </div>
         <div className="detail-feed-info pt-5">
           <button onClick={closeModal} className="close btn-secondary">
             X
           </button>
           <div className="description">
-            <div className="bg-rainbow">
-              <img src={photo} alt={username} />
+            <div
+              className="bg-rainbow"
+              onClick={() => {
+                navigate("/feed/" + feed.username);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              <img src={feed.photo} alt={feed.username} />
             </div>
             <div>
-              <p>{username}</p>
-              <p>{caption}</p>
+              <p
+                onClick={() => {
+                  navigate("/feed/" + feed.username);
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                {feed.username}
+              </p>
+              <p>{feed.caption}</p>
             </div>
           </div>
           <div className="comment-container">
-            {comment.map((user, index) => {
+            {selectedImage.comment.map((item, index) => {
               return (
-                <div key={index} className="comment">
+                <div
+                  key={index}
+                  className="comment"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    navigate("/feed/" + item.username);
+                  }}
+                >
                   <div className="bg-rainbow">
-                    <img src={user.photo} alt={user.username} />
+                    <img src={item.photo} alt={item.username} />
                   </div>
                   <div>
-                    <p>{user.username}</p>
-                    <p>{user.comment}</p>
+                    <p>{item.username}</p>
+                    <p>{item.comment}</p>
                   </div>
                 </div>
               );
@@ -54,22 +86,28 @@ export default function DetailFeedModal(props) {
           </div>
           <div style={{ position: "absolute", bottom: 35, width: "21%" }}>
             <div className="action d-flex justify-content-end align-items-center mb-2">
-              <input type="checkbox" id={`cb${selectedImage - 1}`} />
+              <input
+                type="checkbox"
+                id={`cbdf${selectedImage.id}`}
+                defaultChecked={selectedImage.like}
+              />
               <label
-              // htmlFor={`cb${selectedImage - 1}`}
-              // onClick={() => {
-              //   if (checked) {
-              //     return setChecked(false);
-              //   }
-              //   setChecked(true);
-              // }}
+                style={{ marginRight: "0.8rem" }}
+                htmlFor={`cbdf${selectedImage.id}`}
+                onClick={() => {
+                  if (selectedImage.like) {
+                    selectedImage.like = false;
+                    return console.log(selectedImage);
+                  }
+                  selectedImage.like = true;
+                }}
               >
                 <LikeIcon fill={"none"} stroke={"gray"} />
               </label>
               <Link to="" className="me-2">
                 <CommentIcon />
               </Link>
-              <Link to="/home/message" className="me-2">
+              <Link to="/home/message" className="me-3">
                 <MessageIcon />
               </Link>
             </div>

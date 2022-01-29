@@ -9,7 +9,7 @@ export default function Logo(props) {
   if (props.isLarge) className.push("w-75");
 
   return (
-    <Link to="/home/feed" className="ms-n1">
+    <Link to="/feed" className="ms-n1">
       <img
         src={DumbGramLogo}
         alt="dumbgram_logo"

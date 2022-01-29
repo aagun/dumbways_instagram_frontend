@@ -13,7 +13,7 @@ export default function UserProfile(props) {
       <Row className="profile mt-3">
         <div className="d-flex flex-column align-items-center mt-5">
           {!params && (
-            <Link to="/home/edit-profile" className="ms-auto me-5 mb-4">
+            <Link to="/edit-profile" className="ms-auto me-5 mb-4">
               <Image src={Icons.Edit} />
             </Link>
           )}
@@ -25,7 +25,7 @@ export default function UserProfile(props) {
           <span className="profile-username mb-5">@{profile.username}</span>
           {params && (
             <Col className="mb-5">
-              <Link to="/home/message" className="btn btn-primary ms-3 fs-6">
+              <Link to="/inbox" className="btn btn-primary ms-3 fs-6">
                 Message
               </Link>
               <Link to="/unfollow" className="btn btn-dark ms-3 fw-bold fs-6">

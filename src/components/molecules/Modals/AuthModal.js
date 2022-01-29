@@ -5,9 +5,9 @@ import "./style.css";
 
 export default function AuthModal(props) {
   const { show, setShow, isLoginModal, setIsLoginModal } = props;
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(null);
   const handleFormModal = () => {
-    setMessage("");
+    setMessage(null);
     if (isLoginModal) {
       return setIsLoginModal(false);
     }
@@ -15,7 +15,7 @@ export default function AuthModal(props) {
   };
 
   const handleClose = () => {
-    setMessage("");
+    setMessage(null);
     if (isLoginModal) {
       return setShow(false);
     }

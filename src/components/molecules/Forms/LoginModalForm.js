@@ -4,24 +4,24 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginModalForm(props) {
   const { setMessage } = props;
-  const [state, setState] = useState({
+  const [form, setForm] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
-    setState({
-      ...state,
+    setForm({
+      ...form,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (state.email && state.password) {
+    if (form.email && form.password) {
       setMessage("");
-      return navigate("/home/feed");
+      return navigate("/feed");
     }
     return setMessage("Isi email sama password dulu kak.");
   };
@@ -34,7 +34,7 @@ export default function LoginModalForm(props) {
           placeholder="Email"
           name="email"
           onChange={handleOnChange}
-          value={state.email}
+          value={form.email}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="password">
@@ -43,7 +43,7 @@ export default function LoginModalForm(props) {
           placeholder="Password"
           name="password"
           onChange={handleOnChange}
-          value={state.password}
+          value={form.password}
         />
       </Form.Group>
       <Button type="submit" className="w-100 mt-4 p-2">

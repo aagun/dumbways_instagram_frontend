@@ -15,7 +15,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Icons, ImagesForLandingPage } from "../../../assets";
-import { ProfilePicture } from "../../atoms";
+import { Logo, ProfilePicture } from "../../atoms";
 
 export default function NavbarComponent() {
   const currentClassName = ["notification", "me-2"];
@@ -113,10 +113,10 @@ export default function NavbarComponent() {
                 />
               </OverlayTrigger>
             </>
-            <Link to="/home/message" className="ms-3 me-4">
+            <Link to="/inbox" className="ms-3 me-4">
               <Image src={Icons.Send} />
             </Link>
-            <Link to="/home/create-post" className="btn btn-primary ms-3 py-2">
+            <Link to="/create-post" className="btn btn-primary ms-3 py-2">
               <span
                 className="rounded-3 fw-bold fs-6 me-2"
                 style={{

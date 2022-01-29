@@ -5,6 +5,8 @@ import SideNavbar from "./SideNavbar";
 import UserProfile from "./UserProfile";
 import UserInsight from "./UserInsight";
 import DetailFeedModal from "./Modals/DetailFeedModal";
+import NavbarComponent from "./Navbar";
+import { Chat, Contact } from "./Messages";
 
 export {
   AuthModal,
@@ -14,4 +16,7 @@ export {
   UserProfile,
   UserInsight,
   DetailFeedModal,
+  NavbarComponent,
+  Chat,
+  Contact,
 };

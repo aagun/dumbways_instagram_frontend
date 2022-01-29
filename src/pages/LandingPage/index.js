@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { PostedImages as Hero, AuthModal } from "../../components/molecules";
 
 export default function LandingPage(props) {
-  // set page titel
+  // set page title
   document.title = "DumbGram";
 
   const [show, setShow] = useState(props.show || false);

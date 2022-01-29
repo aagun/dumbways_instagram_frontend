@@ -124,7 +124,7 @@ body {
 /* Form */
 textarea.form-control,
 input.form-control {
-  color: #b1b1b1;
+  color: white;
   background: rgba(210, 210, 210, 0.25);
   border: 2px solid #d2d2d2;
   font-size: 16px;
@@ -133,7 +133,7 @@ input.form-control {
 textarea.form-control:focus,
 input.form-control:focus {
   box-shadow: none;
-  color: #b1b1b1;
+  color: white;
   background: rgba(210, 210, 210, 0.25);
 }
 /* End Form */
@@ -311,4 +311,36 @@ div label svg {
 :checked + label path {
   fill: red !important;
   stroke: red !important;
+}
+
+.contact-container {
+  max-height: 86vh;
+  overflow-y: scroll;
+  margin-top: 40px;
+}
+
+.message .contact-container > div:last-child {
+  margin-bottom: 0 !important;
+}
+
+.chat-me {
+  background: #262626;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 400px;
+}
+
+.chat-other {
+  background: #575757;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 400px;
 }

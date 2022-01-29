@@ -7,10 +7,10 @@ export default function SideNavbar() {
   return (
     <div className="side-navbar">
       <Row>
-        <Link className="btn" to="/home/feed">
+        <Link className="btn" to="/feed">
           <img src={Icons.Home} alt="home_icon" /> Feed
         </Link>
-        <Link className="btn" to="/home/explore">
+        <Link className="btn" to="/explore">
           <img src={Icons.Compass} alt="explore_icon" />
           Explore
         </Link>

@@ -9,14 +9,9 @@ import { CommentIcon, LikeIcon, MessageIcon } from "../../atoms";
 export default function PostedImages(props) {
   let { feeds, isFeed, isHero, setSelectedImage, checked, setChecked } = props;
 
-  const handleDetailFeedModal = (id_) => {
-    setSelectedImage(id_ + 1);
-    if (document.getElementById(`cb${id_}`)) {
-      if (checked) {
-        return setChecked(false);
-      }
-      setChecked(true);
-    }
+  const handleDetailFeedModal = (feedId) => {
+    const feed = feeds.find((feed_) => feed_.id === feedId);
+    setSelectedImage({ ...feed });
   };
   return (
     <>
@@ -31,10 +26,7 @@ export default function PostedImages(props) {
           ? Hero.map((feed, index) => {
               return (
                 <div key={index}>
-                  <img
-                    src={feed}
-                    alt={feed.split("/").pop().replace(".", "")}
-                  />
+                  <img src={feed} alt="hero" />
                 </div>
               );
             })
@@ -44,7 +36,7 @@ export default function PostedImages(props) {
                   <img
                     src={feed.image}
                     alt={index}
-                    onClick={() => handleDetailFeedModal(index)}
+                    onClick={() => handleDetailFeedModal(feed.id)}
                   />
                   {isFeed && (
                     <Row className="mt-3">

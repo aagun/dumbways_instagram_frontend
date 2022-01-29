@@ -1,188 +1,119 @@
-import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  FloatingLabel,
-  Form,
-  Button,
-} from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { Logo } from "../../components/atoms";
 import {
-  DetailFeedModal,
-  PostedImages,
   SideNavbar,
   UserProfile,
+  NavbarComponent,
 } from "../../components/molecules";
-import NavbarComponent from "../../components/molecules/Navbar";
+import { user } from "../../fakeData";
 
 export default function EditProfile() {
-  const posts = [
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/1.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/4.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/2.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/5.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/3.png"),
-      likes: 127321,
-    },
-    {
-      user: {
-        username: "zayn",
-        profilePicture: require("../../assets/images/avatar/zayn.png"),
-      },
-      image: require("../../assets/images/7.png"),
-      likes: 127321,
-    },
-  ];
-  const users = [
-    {
-      name: "Lisa",
-      username: "lisa_blp",
-      profilePicture: require("../../assets/images/avatar/lisa.png"),
-      posts: 200,
-      followers: 50.1,
-      following: 1,
-      bio: "Rapper in Black Pink, Brand Ambasador Penshoppe",
-    },
-    {
-      name: "Zayn",
-      username: "zayn",
-      profilePicture: require("../../assets/images/avatar/zayn.png"),
-      posts: 1000,
-      followers: 150.1,
-      following: 1,
-      bio: "Brand Ambasador Penshoppe",
-    },
-  ];
+  // set title
+  const title = "Edit Profile";
+  document.title = "DumbGram | " + title;
 
-  const [user, setUser] = useState({
+  const navigate = useNavigate();
+  const [preview, setPreview] = useState(null);
+  const [form, setForm] = useState({
     name: "",
-    profilePicture: "",
     username: "",
-    posts: "",
-    followers: "",
-    following: "",
     bio: "",
+    image: "",
   });
-  const [state, setState] = useState(false);
-  const [show, setShow] = useState(false);
-  const [message, setMessage] = useState("");
-  const [userFeed, setUserFeed] = useState([]);
-  const [isUser, setIsUser] = useState(false);
-  const { username } = useParams();
 
-  useEffect(() => {
-    if (username) {
-      const findUser = users.find((u) => u.username === username);
-      if (findUser) {
-        setIsUser(true);
-        const userPosts = posts.filter(
-          (post) => post.user.username === username
-        );
-        setState(true);
-        setUserFeed([...userPosts]);
-        return setUser({ ...user, ...findUser });
-      }
-      setMessage(`User ${username} not found`);
-      setShow(true);
-      return setUser({ ...user, ...users[0] });
+  const handleOnChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]:
+        e.target.type === "file" ? e.target.files : e.target.value,
+    });
+
+    if (e.target.type === "file") {
+      const url = URL.createObjectURL(e.target.files[0]);
+      setPreview(url);
     }
-    setShow(false);
-    setUser({ ...user, ...users[0] });
-    setState(false);
-  }, [username]);
+  };
 
-  console.log(userFeed);
+  const handleOnSubmit = () => {
+    navigate("/home/feed");
+  };
 
   return (
     <Container fluid>
       <Row className="feed min-vh-100">
         <Col md={3} className="px-0 pb-5">
           <Logo isSmall className="mt-4 mx-5" />
-          <UserProfile
-            user={{ user, params: state }}
-            show={show}
-            setShow={setShow}
-            message={message}
-            setMessage={setMessage}
-          />
+          <UserProfile profile={user.profile} />
           <SideNavbar />
         </Col>
         <Col md={9} className="container-fluid pt-4">
           <NavbarComponent />
           <Container>
             <h1 className="text-white fw-bold mt-5">Edit Profile</h1>
-            <Form onSubmit={"handleOnSubmit"}>
-              <span
+            <Form onSubmit={handleOnSubmit}>
+              {preview && (
+                <div>
+                  <img
+                    src={preview}
+                    style={{
+                      maxWidth: "500px",
+                      maxHeight: "500px",
+                      objectFit: "cover",
+                    }}
+                    alt="preview"
+                  />
+                </div>
+              )}
+              <Form.Control
+                type="file"
+                id="upload"
+                hidden
+                onChange={handleOnChange}
+              />
+              <label
+                htmlFor="upload"
                 className="mb-3 mt-5 px-4 py-3 btn btn-primary btn-file fs-6"
-                controlId="email"
               >
                 Upload Photos
-                <Form.Control type="file" />
-              </span>
-              <Form.Group className="mb-3" controlId="email">
+              </label>
+              <Form.Group className="mb-3">
                 <Form.Control
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  onChange={"handleOnChange"}
-                  value={state.email}
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  onChange={handleOnChange}
+                  value={form.name}
                   className="py-3"
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="password">
+              <Form.Group className="mb-3">
                 <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  onChange={"handleOnChange"}
-                  value={state.password}
+                  type="username"
+                  placeholder="Username"
+                  name="username"
+                  onChange={handleOnChange}
+                  value={form.username}
                   className="py-3"
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="password">
+              <Form.Group className="mb-3" controlId="bio">
                 <Form.Control
                   as="textarea"
-                  placeholder="Leave a comment here"
+                  name="bio"
+                  placeholder="Bio"
                   style={{ height: "200px" }}
+                  onChange={handleOnChange}
+                  value={form.bio}
                 />
               </Form.Group>
               <div className="ms-auto d-flex justify-content-end">
-                <Button className="mt-5" style={{ padding: "12px 30px" }}>
+                <Button
+                  type="submit"
+                  className="mt-5"
+                  style={{ padding: "12px 30px" }}
+                >
                   Save
                 </Button>
               </div>

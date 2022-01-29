@@ -110,7 +110,7 @@ div.detail-image .modal-dialog {
   display: flex;
   flex-direction: column;
   color: white;
-  max-height: 430px;
+  max-height: 360px;
   overflow-y: scroll;
 }
 .detail-feed-info .comment {
